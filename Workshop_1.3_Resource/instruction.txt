@@ -1,0 +1,261 @@
+Link for download:
+1. Check LABSheet_Terraform.xlsx for your accesskey and secretkey
+
+========================================  Basic Resource =====================================================================
+2. Start workshop provider for "basic resouce" by command:
+    cd ~/terraform_202003/Workshop_1.3_Resource/01_basic_resource
+    more ./01_basic_resource.tf
+    more ./terraform.tfvars
+
+3. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply
+
+    *Remark: Terraform will show list of create object and wait for approve to operate: confirm by input "yes"
+
+4. Check output detail of ec2 instance by command: terraform output  (* Record instance id, ip address etc)
+    ---------------------------------------------------------------------------
+    Example:
+    Outputs:
+
+    aws_instance_lab_id = i-0725fc7414fcf401a
+    aws_instance_lab_keyname = keypair
+    aws_instance_lab_public_dns = ec2-13-229-47-208.ap-southeast-1.compute.amazonaws.com
+    aws_instance_lab_public_ip = 13.229.47.208
+    ---------------------------------------------------------------------------
+
+5. Configure aws credential by command: "aws configure" and check status by command: "more ~/.aws/credentials && more ~/.aws/config"
+    ---------------------------------------------------------------------------
+    Example: 
+    ---------------------------------------------------------------------------
+AWS Access Key ID [None]: <Input Access Key>
+AWS Secret Access Key [None]: <Input Secret Key>
+Default region name [None]: ap-southeast-1
+Default output format [None]: table
+    ---------------------------------------------------------------------------
+
+6. Check status of EC2 and detail via aws cli by command: aws ec2 describe-instances --instance-ids <input instance id>
+
+7. (Local Machine) Open new session for test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+    *Remark: After finished please exit from session
+
+8. Change instance type of ec2 from t3a.nano to t2.nano by command:
+    sed -i -e 's/t3a.nano/t2.nano/g' ~/terraform_202003/Workshop_1.3_Resource/01_basic_resource/01_basic_resource.tf
+    more ~/terraform_202003/Workshop_1.3_Resource/01_basic_resource/01_basic_resource.tf
+
+9. Apply this change to terraform by command: terraform apply
+    *Remark: Terraform will show list of create object and wait for approve to operate: confirm by input "yes"
+
+10. Check output detail of ec2 instance by command: terraform output  (* Record instance id, ip address etc)
+    ---------------------------------------------------------------------------
+    Example:
+    Outputs:
+
+aws_instance_lab_id = i-0725fc7414fcf401a
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-52-77-210-220.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 52.77.210.220
+    ---------------------------------------------------------------------------
+
+11. Check status of EC2 and detail via aws cli by command: aws ec2 describe-instances --instance-ids <input instance id>
+
+12. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+13. Destroy EC2 from this script by command: terraform Destroy
+*Remark1: Terraform will show list of delete object and wait for approve to operate: confirm by input "yes"
+*Remark2: terraform destroy is pre-requiste for operate. If you skip this other lab will struct due to limit machine
+
+14. Check status of EC2 and detail via aws cli by command: aws ec2 describe-instances --instance-ids <input instance id>
+
+========================================  Basic Resource =====================================================================
+========================================  Implicit Dependency  ===============================================================
+15. Start workshop provider for "Implicit Dependency" by command:
+    cd ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource
+    more 00_provider.tf
+    more 01_data_ami.tf
+    sed -i -e 's/labresource-student-X/labresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/02_resource_ec2.tf
+    more 02_resource_ec2.tf
+    sed -i -e 's/EBSlabresource-student-X/EBSlabresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/03_resource_disk.tf
+    more 03_resource_disk.tf
+    more terraform.tfvars
+
+16. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true ./
+
+17. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+
+aws_ebs_volume_labebs_id = vol-06287f1ebc3ee22a1
+aws_instance_lab_id = i-0586c1cc00fe01f1a
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-13-251-129-151.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 13.251.129.151
+---------------------------------------------------------------------------
+
+18. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+19. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
+
+20. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+21. (Local Machine) Check root storage (/) and additional storage by command: sblk
+
+22. (Local Machine) Check additional storage by command: sudo file -s /dev/nvme1n1
+
+23. (Local Machine) Format additional storage and mount to system by command:
+    sudo mkfs -t xfs /dev/nvme1n1
+    sudo mkdir /additionalstorage
+    sudo mount /dev/nvme1n1 /additionalstorage
+    df -kh
+    exit
+
+24. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+    *Remark: terraform destroy is pre-requiste for operate. If you skip this other lab will struct due to limit machine
+
+25. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+26. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
+========================================  Implicit Dependency ================================================================
+========================================  Explicit Dependency ================================================================
+27. Start workshop provider for "Explicit Dependency" by command:
+    cd ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource
+    more 00_provider.tf
+    more 01_data_vpc.tf
+    more 02_data_ami.tf
+    sed -i -e 's/securitygroup-server1-student-X/securitygroup-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
+    sed -i -e 's/securitygroup-server2-student-X/securitygroup-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
+    more 03_security_group.tf
+    sed -i -e 's/labresource-server1-student-X/labresource-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/04_resource_ec2.tf
+    sed -i -e 's/labresource-server2-student-X/labresource-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/04_resource_ec2.tf
+    more 04_resource_ec2.tf
+    sed -i -e 's/labresource-bucket-student-X/labresource-bucket-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/05_resource_bucket.tf
+    more 05_resource_bucket.tf
+    more terraform.tfvars
+
+28. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true ./
+
+29. Check output detail of ec2 instance by command: terraform output  (* Record instance id, ip address etc)
+    ---------------------------------------------------------------------------
+    Example:
+    Outputs:
+
+    aws_instance_lab_keyname = keypair
+    aws_instance_labserver1_id = i-09840dce566acc2ed
+    aws_instance_labserver1_ip = 52.77.242.110
+    aws_instance_labserver1_public_dns = ec2-52-77-242-110.ap-southeast-1.compute.amazonaws.com
+    aws_instance_labserver2_id = i-003bffd4045a7a09c
+    aws_instance_labserver2_ip = 54.255.167.184
+    aws_instance_labserver2_public_dns = ec2-54-255-167-184.ap-southeast-1.compute.amazonaws.com
+    aws_s3_labbucket_arn = arn:aws:s3:::labresource-bucket-student-34
+    aws_s3_labbucket_domainname = labresource-bucket-student-34.s3.amazonaws.com
+    aws_s3_labbucket_id = labresource-bucket-student-34
+    aws_vpc_cidr = 172.31.0.0/16
+    ---------------------------------------------------------------------------
+
+30. Check status of EC2 (Server 1: Nginx) and detail by command: aws ec2 describe-instances --instance-ids <instance id of server1>   ==> Record Security Group Name
+
+31. Check detail of security group (Server 1: Nginx) by command: aws ec2 describe-security-groups --group-names <Security Group Name>
+
+32. Check status of EC2 (Server 2: Docker) and detail by command: aws ec2 describe-instances --instance-ids <instance id of server2>
+
+33. Check detail of security group (Server 2: Docker) by command: aws ec2 describe-security-groups --group-names <Security Group Name>  ==> Record Security Group Name
+
+34. Check status of S3 Bucket and detail by command: aws s3api list-buckets --query "Buckets[].Name" | grep <s3 bucket id>
+
+35. (Local Machine) Test access to new machine by ssh connection to <public ip> of server 1 (nginx server)
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+34. (Local Machine) Check by command: ps -ef | grep nginx
+
+35. (Local Machine) Test curl for get first page of nginx by command: curl http://localhost
+
+36. (Local Machine) Test access web site by url: http://<public ip of server1>
+
+37. (Local Machine) Test access to new machine by ssh connection to <public ip> of server 2 (docker server)
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+38. (Local Machine) Test run some docker container by command: docker version && docker run hello-world
+
+39. Test utilize and access s3 bucket by command:
+    curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > ~/script_docker.sh
+    aws s3api list-buckets --query "Buckets[].Name" | grep <s3 bucket id>
+    aws s3 ls s3://<s3 bucket id>
+    aws s3 cp ~/script_docker.sh s3://<s3 bucket id>
+    aws s3 ls s3://<s3 bucket id>
+    aws s3 rm s3://<s3 bucket id>/script_docker.sh
+    aws s3 ls s3://<s3 bucket id>
+
+40. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+    *Remark: terraform destroy is pre-requiste for operate. If you skip this other lab will struct due to limit machine
+
+41. Check status of EC2 (server1: nginx) and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+42. Check status of EC2 (server2: docker) and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+43. Check status of S3 Bucketnby command: 
+    aws s3api list-buckets --query "Buckets[].Name" | grep <s3 bucket id>
+    aws s3 ls s3://<s3 bucket id>
+
+========================================  Explicit Dependency ================================================================

@@ -1,0 +1,59 @@
+Link for download:
+1. SCP access key to your terraform server by command: scp -i terraformlab ./terraformlab ubuntu@<ip of terraform server:/home/ubuntu
+
+========================================  Implicit Dependency  ===============================================================
+2. Start workshop provider for "Implicit Dependency" by command:
+    chmod 400 ~/terraformlab
+    cd ~/terraform_202003/Workshop_1.4_Provisioner
+    more 00_provider.tf
+    more 01_data_ami.tf
+    sed -i -e 's/labresource-student-X/labresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/02_resource_ec2.tf
+    more 02_resource_ec2.tf
+    sed -i -e 's/EBSlabresource-student-X/EBSlabresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/03_resource_disk.tf
+    more 03_resource_disk.tf
+    more terraform.tfvars
+
+3. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true ./
+
+4. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+
+aws_ebs_volume_labebs_id = vol-05705e4be2f817326
+aws_instance_lab_id = i-018ba99df07d91bc7
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-3-1-51-49.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 3.1.51.49
+---------------------------------------------------------------------------
+
+5. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+6. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
+
+7. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+8. (Local Machine) Check root storage (/) and additional storage by command: lsblk
+
+9. (Local Machine) Check disk operate by command: df -kh
+
+10. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+
+11. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+12. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>

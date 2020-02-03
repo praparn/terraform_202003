@@ -1,0 +1,130 @@
+Link for download:
+1. Check LABSheet_Terraform.xlsx for your accesskey and secretkey
+
+========================================  Static Provider =====================================================================
+2. Start workshop provider for "static_provider" by command:
+    cd ~/terraform_202003/Workshop_1.2_Provider/01_static_provider
+    vi ./01_static_provider.tf          ==> Input your accesskey/secretkey
+    more ./01_static_provider.tf
+
+3. Initial terraform operate by command: terraform init
+    ---------------------------------------------------------------------------
+    Example: output:
+    ---------------------------------------------------------------------------
+    Initializing the backend...
+
+Initializing provider plugins...
+- Checking for available provider plugins...
+- Downloading plugin for provider "aws" (hashicorp/aws) 2.44.0...
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+    ---------------------------------------------------------------------------
+
+4. Check output from command terraform init by command: find . -type f -printf "%T@ %p\n" | sort -nr | cut -d\  -f2-
+
+5. Check format of terraform's source file for terraform version 0.12 by command: terraform fmt -check
+
+6. Check syntax of terraform's source file by command: terraform validate
+
+7. Start terraform operation by command: terraform apply
+
+    ---------------------------------------------------------------------------
+    Example: output:
+    ---------------------------------------------------------------------------
+data.aws_vpc.vpc: Refreshing state...
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_vpc_arn = arn:aws:ec2:ap-southeast-1:404075494050:vpc/vpc-4483e921
+aws_vpc_cidr = 172.31.0.0/16
+
+    ---------------------------------------------------------------------------
+
+========================================  Static Provider =====================================================================
+========================================  Environment Provider ================================================================
+8. Start workshop provider for "Environment Provider" by command:
+    cd ~/terraform_202003/Workshop_1.2_Provider/02_environment_provider
+    more 01_environment_provider.tf
+
+9. Export environment variable for support variable "
+    export AWS_ACCESS_KEY_ID="<access key>"
+    export AWS_SECRET_ACCESS_KEY="<secret key>"
+    export AWS_DEFAULT_REGION="ap-southeast-1"
+
+10. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply
+
+11. Check detail on state file by command:
+    more terraform.tfstate 
+
+========================================  Environment Provider ================================================================
+========================================  Input Variable Provider ================================================================
+12. Start workshop provider for "Input Variable Provider" by command:
+    cd ~/terraform_202003/Workshop_1.2_Provider/03_inputvariable_provider
+    more terraform.tfvars
+    more 01_inputvariable_provider.tf
+
+13. Export environment variable for support variable "
+    export TF_VAR_access_key="<access key>"
+    export TF_VAR_secret_key="<secret key>"
+
+14. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply
+
+========================================  Input Variable Provider ================================================================
+========================================  Credential File Provider ================================================================
+15. Start workshop provider for "Credential File Provider" by command:
+    cd ~/terraform_202003/Workshop_1.2_Provider/04_credentialfile_provider
+    more terraform.tfvars
+    more 01_credentialfile_provider.tf
+
+16. Configure aws credential by command: "aws configure"
+    ---------------------------------------------------------------------------
+    Example: 
+    ---------------------------------------------------------------------------
+AWS Access Key ID [None]: <Input Access Key>
+AWS Secret Access Key [None]: <Input Secret Key>
+Default region name [None]: ap-southeast-1
+Default output format [None]: table
+    ---------------------------------------------------------------------------
+
+17. Start process of terraform operation by command:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply
+
+18. Cleanup aws configuration by command:
+    rm -rf ~/.aws
+
+========================================  Credential File Provider ================================================================
+========================================  EC2 Role Provider =======================================================================
+19. Start workshop provider for "Credential File Provider" by command:
+    cd ~/terraform_202003/Workshop_1.2_Provider/05_ec2role_provider
+    more terraform.tfvars
+    more 01_ec2role_provider.tf
+
+20. Start process of terraform operation by command:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply
+
+========================================  EC2 Role Provider =======================================================================

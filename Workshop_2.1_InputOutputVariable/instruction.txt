@@ -1,0 +1,255 @@
+This workshop for operate input variable for all type support
+
+========================================  Commandline Variable  ===============================================================
+1. Start workshop "commandline variable" by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/01_commandline_variable
+    more 01_commandline_resource.tf
+    more variables.tf
+
+2. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 \
+    -var 'region=ap-southeast-1' \
+    -var 'ami=ami-81cefcfd' \
+    -var 'instancetype=t3a.nano' \
+    -var 'keypair=keypair' \
+    -refresh=true ./
+
+3. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_instance_lab_id = i-0eeb2339131d2f6ce
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-13-251-110-185.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 13.251.110.185
+
+---------------------------------------------------------------------------
+
+4. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+5. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+6. Destroy EC2/EBS from this script by command: 
+    terraform destroy -auto-approve \
+    -var 'region=ap-southeast-1' \
+    -var 'ami=ami-81cefcfd' \
+    -var 'instancetype=t3a.nano' \
+    -var 'keypair=keypair' \
+    -refresh=true ./
+
+7. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+========================================  Commandline Variable  ===============================================================
+========================================  Environment Variable  ===============================================================
+
+8. Start workshop "environment variable" by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/02_environment_variable
+    more 02_environment_resource.tf
+    more variables.tf
+
+9. Set environment variable for define variable by command:
+    export TF_VAR_region=ap-southeast-1
+    export TF_VAR_ami=ami-81cefcfd
+    export TF_VAR_instancetype=t3a.nano
+    export TF_VAR_keypair=keypair
+
+10. Check all environment variable for operate by command:
+    echo $TF_VAR_region
+    echo $TF_VAR_ami
+    echo $TF_VAR_instancetype
+    echo $TF_VAR_keypair
+
+11. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true ./
+
+12. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_instance_lab_id = i-0eef1cdfe700ec0b7
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-13-251-42-135.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 13.251.42.135
+---------------------------------------------------------------------------
+
+13. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+14. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+15. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+
+16. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+17. Unset Environment Variable by command:
+    export TF_VAR_region=
+    export TF_VAR_ami=
+    export TF_VAR_instancetype=
+    export TF_VAR_keypair=
+
+18. Check all environment variable for operate by command:
+    echo $TF_VAR_region
+    echo $TF_VAR_ami
+    echo $TF_VAR_instancetype
+    echo $TF_VAR_keypair
+========================================  Environment Variable  ===============================================================
+======================================== File Variable  =========================================================================
+19. Start workshop "ui variable" by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/03_file_variable
+    more 03_file_resource.tf
+    more terraform.tfvars
+    more variables.tf
+
+20. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true ./
+
+21. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_instance_lab_id = i-0afea74194b4e37f3
+aws_instance_lab_keyname = keypair
+aws_instance_lab_public_dns = ec2-18-138-224-169.ap-southeast-1.compute.amazonaws.com
+aws_instance_lab_public_ip = 18.138.224.169
+---------------------------------------------------------------------------
+
+22. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+23. (Local Machine) Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+24. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+
+25. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+
+======================================== File Variable  =========================================================================
+======================================== Share Variable  =========================================================================
+26. Start workshop "Share Variable" by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable
+    ls -lh
+    more global_variable.auto.tfvars
+
+27. Create EC2 instance from variable by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance
+    more 00_provider.tf
+    more 01_data_vpc.tf
+    more 02_data_ami.tf
+    more 03_local.tf
+    more 04_security_group.tf
+    more 05_resource_ec2.tf
+    more variables.tf
+    sed -i -e 's/labresource-server1-student-X/labresource-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
+    sed -i -e 's/labresource-server2-student-X/labresource-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
+    more terraform.tfvars
+
+28. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true -var-file=../global_variable.auto.tfvars ./
+
+29. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_instance_labserver_ip = {
+  "i-0266f98b2582bbe2b" = "54.255.219.157"
+  "i-071aca1891566ad7a" = "13.229.214.197"
+}
+---------------------------------------------------------------------------
+
+30. Check status of EC2 and clarify server1/2 by command: 
+   aws ec2 describe-instances --instance-ids <instance id server1>      *Record: ID of EC2
+   aws ec2 describe-instances --instance-ids <instance id server2>      *Record: ID of EC2
+
+31. Send Outputs
+    terraform output >> ../global_variable.auto.tfvars
+
+32. Create Route53 from variable by command:
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/02_route53
+    more 00_provider.tf
+    more 01_route53.tf
+    more variables.tf
+
+32. Start process of terraform operation:
+    terraform init
+    terraform fmt -check
+    terraform validate
+    terraform apply -auto-approve -parallelism=5 -refresh=true -var-file=../global_variable.auto.tfvars ./
+
+33. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_route53_fqdn = {
+  "i-0da8541014abb05c2" = "i-0da8541014abb05c2.terraform.local"
+  "i-0f0419f97be843d2d" = "i-0f0419f97be843d2d.terraform.local"
+}
+---------------------------------------------------------------------------
+
+34. (Local Machine) Test access to new machine by ssh connection to <public ip server 1/server 2>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost
+             for Server 2: docker version && docker run hello-world
+35. (Local Machine) Query dns on remote machine by command:
+    nslookup i-<Server 1's ID>.terraform.local
+    nslookup i-<Server 1's ID>.terraform.local
+
+36. Destroy EC2/Route 53 from this script by command: 
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/02_route53
+    terraform destroy -auto-approve -var-file=../global_variable.auto.tfvars ./
+    cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance
+    terraform destroy -auto-approve -var-file=../global_variable.auto.tfvars ./
+
+======================================== Share Variable  =========================================================================

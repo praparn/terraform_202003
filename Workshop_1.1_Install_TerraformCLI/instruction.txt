@@ -1,0 +1,44 @@
+Link for download:
+1. Check LABSheet_Terraform.xlsx for check information about your machine and your "terraform" (For MAC OS X) or "terraform.ppk" (For Windows)
+2. Check Document for connect to your AWS
+3. Upgrade aws version by command:
+    export LC_ALL=C
+    pip3 install awscli --upgrade --user
+
+4. Check version of terraform and aws by command:
+    aws --version
+    az --version
+    doctl version
+    terraform --version
+
+5. Start terraform console by command:
+    terraform console
+    *Remark: In case of error in lock: "Error: Error locking state: Error acquiring the state lock: resource temporarily unavailable"
+    ==> rm terraform.tfstate
+
+6. Operate HCL with string function by command:
+    Ex1: replace(lower("\nHELLO, TERRAFORM. \nNo HELLO WORLD ANYMORE!!!\n"), "terraform", upper("<your name>"))
+    Ex2: split("-", title("Provider-azure-gcloud-aws-digitalocen-huiweicloud-rundesk"))
+    Ex3: trimspace(lower(strrev("               MROFARRET MORF DLROW OLLEH  ")))
+    
+7. Operate HCL with numeric function by command:
+    Ex1: ceil(parseint("1111",2)) + abs(max(3215,2, -234134))
+    Ex2: signum(min(23244,0,-2232,123)) + pow(3,2)
+    Ex3: abs(8%5+10*(-10))
+
+8. Operate HCL with network and file function by command:
+    Ex1: cidrhost("10.21.0.0/16", 2048)
+    Ex2: cidrnetmask("10.101.23.0/32")
+    Ex3: abspath(path.root)
+
+9. Operate HCL with date function by command:
+    Ex1: formatdate ("YYYY-MM-DD HH-mm-ss AA", "2020-01-10T23:01:15Z")
+    Ex2: formatdate ("YYYY-MM-DD HH-mm-ss AA", timeadd("2020-01-10T23:01:15Z", "12h"))
+
+10. Exit from terraform by command: exit
+
+11. Clone repository for workshop by command: git clone https://github.com/praparn/terraform_202003.git
+*Remark: If you need to refresh all of repository. Please delete existing and git clone again by command:
+    cd ~
+    rm -rf ./terraform_202003
+    git clone https://github.com/praparn/terraform_202003.git
