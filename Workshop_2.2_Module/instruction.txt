@@ -58,14 +58,18 @@ This workshop for operate with module on azure
 ---------------------------------------------------------------------------
     Example:
     Outputs:
-aws_instance_lab_id = i-0eeb2339131d2f6ce
-aws_instance_lab_keyname = keypair
-aws_instance_lab_public_dns = ec2-13-251-110-185.ap-southeast-1.compute.amazonaws.com
-aws_instance_lab_public_ip = 13.251.110.185
+linux_vm_id = [
+  "/subscriptions/017499d3-a685-4954-b727-273a4a7f939f/resourceGroups/labresourcegroup-student-22/providers/Microsoft.Compute/virtualMachines/labserver-student-220",
+]
+linux_vm_public_name = [
+  "labserver202003-thailand-student-22.southeastasia.cloudapp.azure.com",
+]
 
 ---------------------------------------------------------------------------
 
-6. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
+6. Check status of EC2 and detail by command: 
+    more terraform.tfvars 
+    az vm list -g <resource group name> -d --output table
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -75,7 +79,7 @@ Name                   ResourceGroup                PowerState    PublicIps     
 labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  labserver20200301-thailand-student-22.southeastasia.cloudapp.azure.com  southeastasia
     ---------------------------------------------------------------------------
 
-6. (Local Machine) Test access to new machine by ssh connection to <public ip>
+6. (Local Machine) (Wait 3 -5 min) Test access to new machine by ssh connection to <public ip>
 
     ---------------------------------------------------------------------------
     Example MAC or WSL2:
