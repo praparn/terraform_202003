@@ -16,7 +16,7 @@
     data_disk                     = var.data_disk
     data_disk_size_gb             = var.data_disk_size_gb
     data_sa_type                  = var.data_sa_type
-    public_ip_dns                 = [var.public_ip_dns]
+    public_ip_dns                 = ["labserver202003-thailand-student-${lower(random_id.dnsname.hex)}"]
     vm_size                       = var.vm_size
     custom_data                   = var.custom_data
     admin_username                = var.admin_username

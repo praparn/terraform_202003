@@ -6,11 +6,6 @@ variable "nb_public_ip" {
   description = "Number of Public IP"
 }
 
-variable "public_ip_dns" {
-  type = string
-  description = "Name of DNS on Compute"
-}
-
 variable "modulenetwork_allowssh" {
   type = string
   description = "Module Network Allow SSH Flag"
