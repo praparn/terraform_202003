@@ -9,7 +9,7 @@ This workshop for operate with module on azure
     more 03_compute_module.tf
     more terraformlab.pub
     more variables.tf
-    more terraform.tfvars                   ==> Record: <resource group name>
+    more terraform.tfvars
 
 2. Download and Verify module's resource by command:
     terraform init
@@ -68,8 +68,8 @@ linux_vm_public_name = [
 ---------------------------------------------------------------------------
 
 6. Check status of EC2 and detail by command: 
-    more terraform.tfvars 
-    az vm list -g <resource group name> -d --output table
+    more terraform.tfvars                ==> Record: rscgrp_name
+    az vm list -g <rscgrp_name> -d --output table
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
