@@ -1,7 +1,7 @@
 rscgrp_name = "labresourcegroup-student-3"
 vm_hostname = "labserver-student-3"
 modulenetwork_allowssh = "true"
-public_ip_dns = "labserver202003-thailand-student-3-${lower(random_id.vm-sa.hex)}"
+public_ip_dns = "labserver202003-thailand-student-3-${lower(random_id.dnsname.hex)}"
 nb_public_ip = 1
 remote_port = "22"
 ossimple = "UbuntuServer"

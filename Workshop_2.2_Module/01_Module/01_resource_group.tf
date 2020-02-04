@@ -11,3 +11,11 @@ resource "azurerm_resource_group" "labrscgrp" {
         Billing     = var.tag_billing
     }
 }
+
+resource "random_id" "dnsname" {
+  keepers = {
+    vm_hostname = var.vm_hostname
+  }
+
+  byte_length = 6
+}
