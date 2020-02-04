@@ -1,6 +1,5 @@
 rscgrp_name = "labresourcegroup-student-X"
 vm_hostname = "labserver-student-X"
-module_source = "Azure/network/azurerm"
 modulenetwork_allowssh = "true"
 public_ip_dns = "labserver202003-thailand-student-X"
 nb_public_ip = 1

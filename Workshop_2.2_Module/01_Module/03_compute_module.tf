@@ -19,6 +19,7 @@
     public_ip_dns                 = [var.public_ip_dns]
     vm_size                       = var.vm_size
     custom_data                   = var.custom_data
+    admin_username                = var.admin_username
 
     tags = {
       Environment = var.tag_environment
