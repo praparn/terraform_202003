@@ -1,7 +1,7 @@
 rscgrp_name = "labresourcegroup-student-X"
 vm_hostname = "labserver-student-X"
 modulenetwork_allowssh = "true"
-public_ip_dns = "labserver202003-thailand-student-X"
+public_ip_dns = "labserver202003-thailand-student-X-${lower(random_id.vm-sa.hex)}"
 nb_public_ip = 1
 remote_port = "22"
 ossimple = "UbuntuServer"
@@ -32,4 +32,4 @@ custom_data = <<-EOF
                 curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > /tmp/setup.sh
                 chmod +x /tmp/setup.sh
                 /tmp/setup.sh
-                EOF
+EOF
