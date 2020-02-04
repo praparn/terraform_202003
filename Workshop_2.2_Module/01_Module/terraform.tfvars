@@ -27,9 +27,9 @@ data_sa_type = "Premium_LRS"
 vm_os_sku = "14.04.2-LTS"
 vm_os_offer = "UbuntuServer"
 vm_os_publisher = "Canonical"
-custom_data = "<<-EOF
+custom_data = <<-EOF
                 #!/bin/bash
                 curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > /tmp/setup.sh
                 chmod +x /tmp/setup.sh
                 /tmp/setup.sh
-                EOF"
+                EOF

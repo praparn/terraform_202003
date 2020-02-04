@@ -11,10 +11,12 @@ This workshop for operate with module on azure
     more variables.tf
     more terraform.tfvars                   ==> Record: <resource group name>
 
-2. Verify module's resource from directory .terraform
+2. Download and Verify module's resource by command:
+    terraform init
+    ls -R .terraform/
 
 3. Login az cli for service priciple by command:
-    3.1 Input command: "terraform login"
+    3.1 Input command: "az login"
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -48,7 +50,6 @@ This workshop for operate with module on azure
 ]
 
 4. Start process of terraform operation:
-    terraform init
     terraform fmt -check
     terraform validate
     terraform apply -auto-approve -parallelism=5 

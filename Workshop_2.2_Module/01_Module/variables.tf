@@ -1,11 +1,6 @@
 ############################################################
 #              Define Variable to Operate                  #
 ############################################################
-variable "module_source" {
-  type = string
-  description = "Source Module"
-}
-
 variable "nb_public_ip" {
   type = number
   description = "Number of Public IP"
@@ -141,7 +136,7 @@ variable "vm_os_sku" {
   description = "Type of SKU on os"
 }
 
-varaible "custom_data" {
+variable "custom_data" {
   type = string
   description = "Script for setup vmware application"
 }
