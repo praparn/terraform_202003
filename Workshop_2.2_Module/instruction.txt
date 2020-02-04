@@ -67,7 +67,7 @@ linux_vm_public_name = [
 ---------------------------------------------------------------------------
 
 6. Check status of EC2 and detail by command: 
-    more terraform.tfvars                ==> Record: rscgrp_name
+    more terraform.tfvars |grep rscgrp_name               ==> Record: rscgrp_name
     az vm list -g <rscgrp_name> -d --output table
     ---------------------------------------------------------------------------
     Example Output:
@@ -91,17 +91,15 @@ labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  
     putty to <public ip>
     ---------------------------------------------------------------------------
 
-7. (Local Machine) Test run command: docker run hello-world
+7. (Local Machine) Test run command: sudo docker run hello-world
 
-8. Destroy EC2/EBS from this script by command: 
+8. Destroy EC2/EBS from this script by command:(Wait 3 -5 min) 
     terraform destroy -auto-approve
 
-9. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
+9. Check status of EC2 and detail by command: 
+    more terraform.tfvars |grep rscgrp_name               ==> Record: rscgrp_name
+    az vm list -g <resource group name> -d --output table
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
-
-Name                   ResourceGroup                PowerState    PublicIps     Fqdns                                                                   Location       Zones
----------------------  ---------------------------  ------------  ------------  ----------------------------------------------------------------------  -------------  -------
-labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  labserver20200301-thailand-student-22.southeastasia.cloudapp.azure.com  southeastasia
-    --------------------------------------------------------------------------
+    Resource group 'labresourcegroup-student-11' could not be found.
