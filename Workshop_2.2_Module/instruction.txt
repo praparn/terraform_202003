@@ -7,26 +7,28 @@ This workshop for operate with module on azure
     more 01_resource_group.tf
     more 02_network_module.tf
     more 03_compute_module.tf
-    more terraform.tfvars
     more terraformlab.pub
     more variables.tf
+    more terraform.tfvars                   ==> Record: <resource group name>
 
-2. Login az cli for service priciple by command:
-    2.1 Input command: "terraform login"
+2. Verify module's resource from directory .terraform
+
+3. Login az cli for service priciple by command:
+    3.1 Input command: "terraform login"
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
     To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code HUAF6ANNY to authenticate.
     ---------------------------------------------------------------------------
 
-    2.2 Open browser for url: "https://microsoft.com/devicelogin" and input code
+    3.2 Open browser for url: "https://microsoft.com/devicelogin" and input code
 
-    2.3 Sign In with user below:
+    3.3 Sign In with user below:
     Email: Training_Terraform_Student@eva10409hotmail.onmicrosoft.com
     Username: Training_Terraform_Student
     Password: Tr@1n1nG2020
 
-    2.4 You will get information from login as example below:
+    3.4 You will get information from login as example below:
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -45,13 +47,13 @@ This workshop for operate with module on azure
   }
 ]
 
-3. Start process of terraform operation:
+4. Start process of terraform operation:
     terraform init
     terraform fmt -check
     terraform validate
     terraform apply -auto-approve -parallelism=5 
 
-4. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
+5. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
 ---------------------------------------------------------------------------
     Example:
     Outputs:
@@ -62,7 +64,7 @@ aws_instance_lab_public_ip = 13.251.110.185
 
 ---------------------------------------------------------------------------
 
-4. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
+6. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -72,7 +74,7 @@ Name                   ResourceGroup                PowerState    PublicIps     
 labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  labserver20200301-thailand-student-22.southeastasia.cloudapp.azure.com  southeastasia
     ---------------------------------------------------------------------------
 
-5. (Local Machine) Test access to new machine by ssh connection to <public ip>
+6. (Local Machine) Test access to new machine by ssh connection to <public ip>
 
     ---------------------------------------------------------------------------
     Example MAC or WSL2:
@@ -85,7 +87,17 @@ labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  
     putty to <public ip>
     ---------------------------------------------------------------------------
 
-6. Destroy EC2/EBS from this script by command: 
+7. (Local Machine) Test run command: docker run hello-world
+
+8. Destroy EC2/EBS from this script by command: 
     terraform destroy -auto-approve
 
-7. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
+9. Check status of EC2 and detail by command: az vm list -g <resource group name> -d --output table
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+
+Name                   ResourceGroup                PowerState    PublicIps     Fqdns                                                                   Location       Zones
+---------------------  ---------------------------  ------------  ------------  ----------------------------------------------------------------------  -------------  -------
+labserver-student-220  labresourcegroup-student-22  VM running    52.187.12.41  labserver20200301-thailand-student-22.southeastasia.cloudapp.azure.com  southeastasia
+    --------------------------------------------------------------------------

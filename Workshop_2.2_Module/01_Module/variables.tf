@@ -71,6 +71,11 @@ variable "tag_category" {
   description = "Define category of object to create"
 }
 
+variable "tag_category_linux" {
+  type = string
+  description = "Define category of virtual machine"
+}
+
 variable "tag_zone" {
   type = string
   description = "Define public or private zone"
@@ -94,4 +99,59 @@ variable "ssh_key" {
 variable "vm_size" {
   type = string
   description = "Type of VM Sizing"
+}
+
+variable "enable_accelerated_networking" {
+  type = bool
+  description = "Flag for enable_accelerated_networking"
+}
+
+variable "nb_instances" {
+  type = number
+  description = "Number of Instance to Create"
+}
+
+variable "boot_diagnostics" {
+  type = bool
+  description = "Flag for diag boot"
+}
+
+variable "delete_os_disk_on_termination" {
+  type = bool
+  description = "Flag for delete disk when terminate"
+}
+
+variable "data_disk" {
+  type = bool
+  description = "Flag for add data disk on instance"
+}
+
+variable "data_disk_size_gb" {
+  type = number
+  description = "Sizing of data disk"
+}
+
+variable "data_sa_type" {
+  type = string
+  description = "Type of sa on disk"
+}
+
+variable "vm_os_sku" {
+  type = string
+  description = "Type of SKU on os"
+}
+
+varaible "custom_data" {
+  type = string
+  description = "Script for setup vmware application"
+}
+
+variable "vm_os_offer" {
+  type = string
+  description = "OS offer"
+}
+
+variable "vm_os_publisher" {
+  type = string
+  description = "OS publisher"
 }
