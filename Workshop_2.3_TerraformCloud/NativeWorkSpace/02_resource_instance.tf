@@ -17,6 +17,7 @@ resource "google_compute_instance" "labserver" {
     access_config {
     }
   }
+  metadata_startup_script = var.user_data
 }
 output "google_compute_instance_labserver_id" {
   value = google_compute_instance.labserver.instance_id

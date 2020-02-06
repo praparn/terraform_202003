@@ -1,7 +1,7 @@
 ############################################################
 #              Define Variable to Operate                  #
 ############################################################
-variable "projectname" {
+variable "project_name" {
   type = string
   description = "Project Name"
 }
@@ -52,6 +52,6 @@ variable "compute_type" {
 }
 
 variable "user_data" {
-  type = map
+  type = string
   description = "User data script"
 }
