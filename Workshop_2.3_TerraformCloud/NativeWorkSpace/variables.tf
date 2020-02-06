@@ -1,6 +1,11 @@
 ############################################################
 #              Define Variable to Operate                  #
 ############################################################
+variable "projectname" {
+  type = string
+  description = "Project Name"
+}
+
 variable "zone" {
   type = string
   description = "Zone Name"
