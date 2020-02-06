@@ -20,9 +20,10 @@ scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
     gcloud compute regions list
     gcloud compute zones list
     gcloud compute networks list
+    gcloud projects list ==> confirm enable API (y/N)==> Y
 
 5. Export Credential for default authentication by command:
-  export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Credential.json"
+    export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Credential.json"
 ========================================  Initial Gcloud CLI  ===============================================================
 ========================================  Initial Gcloud CLI  ===============================================================
   terraform init

@@ -1,9 +1,9 @@
 ############################################################
 #              Define Variable to Operate                  #
 ############################################################
-variable "project_name" {
+variable "project_id" {
   type = string
-  description = "Project Name"
+  description = "Project ID"
 }
 
 variable "zone" {

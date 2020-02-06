@@ -1,9 +1,9 @@
-projectname = "TerraformProject202003"
+project_id = "polar-decorator-267303"
 region = "asia-southeast1"
 zone = "asia-southeast1-a"
-gcompute_network_name = "lab-vpc-student-X"
+gcompute_network_name = "lab-vpc-student-x"
 gcompute_createsubnet = true
-compute_name = "lab-computer-student-X"
+compute_name = "lab-computer-student-x"
 compute_type = "f1-micro"
 image = "ubuntu-1804-lts"
 scratch_disk = "SCSI"
