@@ -1,4 +1,35 @@
-This workshop for operate with module on azure
+This workshop for operate with module on gcloud via terraform cloud
+========================================  Initial Gcloud CLI  ===============================================================
+1. (Local Machine) SCP/WinSCP file "GCloud-Credential.json" to remote server by command:
+scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+    praparns-MacBook-Pro:.ssh praparn$ scp -i terraformlab ~/Work/Terraform/Resource/Credential/GCloud-Credential.json ubuntu@52.77.246.176:/home/ubuntu
+    GCloud-Credential.json                                                                                              100% 2353    49.3KB/s   00:00    
+    praparns-MacBook-Pro:.ssh praparn$ 
+    ---------------------------------------------------------------------------
+
+2. Configure project name by command: "gcloud config set project <project id>"
+3. Authentication to remote server and start gcloud by command:
+    cd ~
+    gcloud auth activate-service-account --key-file=./GCloud-Credential.json
+
+4. Test gcloud cli command:
+    gcloud gcloud auth list
+    gcloud compute regions list
+    gcloud compute zones list
+    gcloud compute networks list
+
+5. 
+
+
+========================================  SignUp with Terraform Cloud  ===============================================================
+1. Access url: https://app.terraform.io/signup/account
+2. Input username, email, password for register
+3. Check and Confirm Email
+4. Access url: https://app.terraform.io/session and input username/password
+5. 
 ========================================  Module Operate  ===============================================================
 1. Start workshop "module variable" by command:
     cd ~/terraform_202003/Workshop_2.2_Module/01_Module/
@@ -25,8 +56,10 @@ This workshop for operate with module on azure
 
     3.2 Open browser for url: "https://microsoft.com/devicelogin" and input code
 
-    3.3 Sign In with user on file: Azure-Credential.txt
-
+    3.3 Sign In with user below:
+    Email: Training_Terraform_Student@eva10409hotmail.onmicrosoft.com
+    Username: Training_Terraform_Student
+    Password: Tr@1n1nG2020
 
     3.4 You will get information from login as example below:
     ---------------------------------------------------------------------------

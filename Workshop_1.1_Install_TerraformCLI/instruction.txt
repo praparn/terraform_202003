@@ -9,6 +9,7 @@ Link for download:
     aws --version
     az --version
     doctl version
+    gcloud --version
     terraform --version
 
 5. Start terraform console by command:
