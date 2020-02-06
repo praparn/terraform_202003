@@ -41,6 +41,11 @@ variable "compute_name" {
   description = "Create compute name"
 }
 
+variable "compute" {
+  type = string
+  description = "Resource Name"
+}
+
 variable "compute_type" {
   type = string
   description = "Defined compute instance type"
