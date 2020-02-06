@@ -9,9 +9,7 @@ resource "google_compute_instance" "labserver" {
       size = var.disk_size
     }
   }
-  scratch_disk {
-    interface = var.scratch_disk
-  }
+
   network_interface {
     network = google_compute_network.lab_vpc_network.name
     access_config {

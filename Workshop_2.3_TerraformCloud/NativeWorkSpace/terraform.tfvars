@@ -6,8 +6,7 @@ gcompute_createsubnet = true
 compute_name = "lab-computer-student-x"
 compute_type = "f1-micro"
 image = "ubuntu-1804-lts"
-scratch_disk = "SCSI"
-disk_size = 8
+disk_size = 10
 user_data = <<-EOF
                 #!/bin/bash
                 curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > /tmp/setup.sh

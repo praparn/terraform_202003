@@ -21,11 +21,6 @@ variable "image" {
   description = "Image for OS"
 }
 
-variable "scratch_disk" {
-  type = string
-  description = "Type of Disk Interface"
-}
-
 variable "disk_size" {
   type = number
   description = "Sizing of Disk"
