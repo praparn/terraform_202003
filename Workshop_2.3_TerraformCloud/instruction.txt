@@ -43,6 +43,8 @@ scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
 
 8. 
 
+terraform destroy -auto-approve
+
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
 ========================================  SignUp with Terraform Cloud  ===============================================================
 1. Access url: https://app.terraform.io/signup/account
