@@ -16,12 +16,11 @@ scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
     gcloud auth activate-service-account --key-file=./GCloud-Credential.json
 
 4. Test gcloud cli command:
-    gcloud gcloud auth list
+    gcloud auth list
     gcloud compute regions list
     gcloud compute zones list
     gcloud compute networks list
 
-5. 
 
 
 ========================================  SignUp with Terraform Cloud  ===============================================================

@@ -1,4 +1,3 @@
-projectname = "<ProjectName>"
 region = "asia-southeast1"
 zone = "asia-southeast1-a"
 gcompute_network_name = "lab-vpc-student-X"

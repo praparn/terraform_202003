@@ -9,16 +9,6 @@ resource "google_compute_instance" "labserver" {
       size = var.disk_size
     }
   }
-  tags = {
-    Environment = var.tag_environment
-    Region      = var.tag_region
-    AZ          = var.tag_az
-    Categories  = var.tag_category
-    Name        = var.tag_name
-    Zone        = var.tag_zone
-    Module      = var.tag_module
-    Billing     = var.tag_billing
-  }
   scratch_disk {
     interface = var.scratch_disk
   }
@@ -29,8 +19,8 @@ resource "google_compute_instance" "labserver" {
   }
 }
 output "google_compute_instance_labserver_id" {
-  google_compute_instance.labserver.instance_id
+  value = google_compute_instance.labserver.instance_id
 }
 output "google_compute_instance_labserver_nat_ip" {
-  google_compute_instance.labserver.network_interface.0.access_config.0.nat_ip
+  value = google_compute_instance.labserver.network_interface.0.access_config.0.nat_ip
 }
