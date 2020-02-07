@@ -43,3 +43,13 @@ Link for download:
     cd ~
     rm -rf ./terraform_202003
     git clone https://github.com/praparn/terraform_202003.git
+
+12. (Local) Transfer (SCB/WINSCP) credential file to remote machine
+    scp -i terraformlab <your path of credential folder>/*.json ubuntu@<public ip>:/home/ubuntu
+    scp -i terraformlab <your path of credential folder>/*.pub ubuntu@<public ip>:/home/ubuntu
+    scp -i terraformlab <your path of credential folder>/terraform_gcloud ubuntu@<public ip>:/home/ubuntu
+    scp -i terraformlab <your path of credential folder>/terraformlab ubuntu@<public ip>:/home/ubuntu
+
+13. Check mode 400 for all credential
+    chmod 400 /home/ubuntu/terraform_gcloud
+    chmod 400 /home/ubuntu/terraformlab

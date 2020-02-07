@@ -1,28 +1,18 @@
 This workshop for operate with module on gcloud via terraform cloud
 ========================================  Initial Gcloud CLI  ===============================================================
-1. (Local Machine) SCP/WinSCP file "GCloud-Credential.json" to remote server by command:
-scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
-    ---------------------------------------------------------------------------
-    Example Output:
-    ---------------------------------------------------------------------------
-    praparns-MacBook-Pro:.ssh praparn$ scp -i terraformlab ~/Work/Terraform/Resource/Credential/GCloud-Credential.json ubuntu@52.77.246.176:/home/ubuntu
-    GCloud-Credential.json                                                                                              100% 2353    49.3KB/s   00:00    
-    praparns-MacBook-Pro:.ssh praparn$ 
-    ---------------------------------------------------------------------------
-
-2. Configure project name by command: "gcloud config set project <project id>"
-3. Authentication to remote server and start gcloud by command:
+1. Configure project name by command: "gcloud config set project <project id>"
+2. Authentication to remote server and start gcloud by command:
     cd ~
     gcloud auth activate-service-account --key-file=./GCloud-Credential.json
 
-4. Test gcloud cli command:
+3. Test gcloud cli command:
     gcloud auth list
     gcloud compute regions list
     gcloud compute zones list
     gcloud compute networks list
-    gcloud projects list ==> confirm enable API (y/N)==> Y
+    gcloud projects list
 
-5. Export Credential for default authentication by command:
+4. Export Credential for default authentication by command:
     export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Credential.json"
 ========================================  Initial Gcloud CLI  ===============================================================
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
@@ -56,6 +46,18 @@ google_compute_instance_labserver_nat_ip = 35.240.255.33
     Example Output:
     ---------------------------------------------------------------------------
 
+10. Test access to new machine by ssh connection to <public ip>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i ~/terraformlab ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
 gcloud beta compute --project "polar-decorator-267303" ssh --zone "asia-southeast1-a" "lab-computer-student-13"
 
 

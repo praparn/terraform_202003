@@ -4,6 +4,7 @@ resource "google_compute_instance" "labserver" {
   zone                    = var.zone
   hostname                = var.compute_name
    tags                   = [var.compute]
+  can_ip_forward          = true
   boot_disk {
     initialize_params {
       image = var.image
@@ -14,6 +15,7 @@ resource "google_compute_instance" "labserver" {
   network_interface {
     network = google_compute_network.lab_vpc_network.name
     access_config {
+      0.0.0.0
     }
   }
   metadata_startup_script = var.user_data
