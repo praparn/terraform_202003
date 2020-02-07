@@ -11,5 +11,4 @@ resource "google_compute_firewall" "lab_firewall" {
     protocol = "tcp"
     ports    = ["22"]
   }
-  source_tags = [var.compute]
 }
