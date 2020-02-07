@@ -1,8 +1,9 @@
 resource "google_compute_instance" "labserver" {
-  name                    = var.compute_name
+  name                    = var.compute
   machine_type            = var.compute_type
   zone                    = var.zone
   hostname                = var.compute_name
+   tags                   = [var.compute]
   boot_disk {
     initialize_params {
       image = var.image

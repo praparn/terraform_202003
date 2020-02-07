@@ -41,7 +41,23 @@ scp -i terraformlab GCloud-Credential.json ubuntu@<public ip>:/home/ubuntu
     terraform validate
     terraform apply -auto-approve -parallelism=5        (Wait 5 Min)
 
-8. 
+8. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+google_compute_instance_labserver_id = 3824751916358927585
+google_compute_instance_labserver_nat_ip = 35.240.255.33
+---------------------------------------------------------------------------
+
+9. Check status of instance and detail by command: 
+    more terraform.tfvars |grep 'compute ='
+    gcloud compute instances list --filter="name=('<compute name>')"
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+
+gcloud beta compute --project "polar-decorator-267303" ssh --zone "asia-southeast1-a" "lab-computer-student-13"
+
 
 terraform destroy -auto-approve
 
