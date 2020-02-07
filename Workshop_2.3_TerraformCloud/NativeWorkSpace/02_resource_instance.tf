@@ -18,7 +18,7 @@ resource "google_compute_instance" "labserver" {
   }
   metadata_startup_script = var.user_data
   metadata = {
-   ssh-keys = "ubuntu:${file("./terraform_gcloud.pub")}"
+   ssh-keys = "ubuntu:${file("~/terraform_gcloud.pub")}"
  }
 }
 output "google_compute_instance_labserver_id" {
