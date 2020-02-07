@@ -14,6 +14,8 @@ resource "google_compute_instance" "labserver" {
 
   network_interface {
     network = google_compute_network.lab_vpc_network.name
+    access_config {
+    }
   }
   metadata_startup_script = var.user_data
   metadata = {
