@@ -2,8 +2,7 @@ This workshop for operate with module on gcloud via terraform cloud
 ========================================  Initial Gcloud CLI  ===============================================================
 1. Configure project name by command: "gcloud config set project <project id>"
 2. Authentication to remote server and start gcloud by command:
-    cd ~
-    gcloud auth activate-service-account --key-file=./GCloud-Credential.json
+    gcloud auth activate-service-account --key-file=/home/ubuntu/GCloud-Credential.json
 
 3. Test gcloud cli command:
     gcloud auth list
@@ -16,7 +15,7 @@ This workshop for operate with module on gcloud via terraform cloud
     export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Credential.json"
 ========================================  Initial Gcloud CLI  ===============================================================
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
-6. Start workshop "native workspace" by command:
+5. Start workshop "native workspace" by command:
     cd ~/terraform_202003/Workshop_2.3_TerraformCloud/NativeWorkSpace
     sed -i -e 's/x/<your lab id>/g' ~/terraform_202003/Workshop_2.3_TerraformCloud/NativeWorkSpace/terraform.tfvars
     more 00_provider.tf
@@ -25,13 +24,13 @@ This workshop for operate with module on gcloud via terraform cloud
     more variables.tf
     more terraform.tfvars
 
-7. Start process of terraform operation:    
+6. Start process of terraform operation:    
     terraform init
     terraform fmt -check
     terraform validate
     terraform apply -auto-approve -parallelism=5        (Wait 5 Min)
 
-8. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
+7. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
 ---------------------------------------------------------------------------
     Example:
     Outputs:
@@ -39,138 +38,106 @@ google_compute_instance_labserver_id = 3824751916358927585
 google_compute_instance_labserver_nat_ip = 35.240.255.33
 ---------------------------------------------------------------------------
 
-9. Check status of instance and detail by command: 
+8. Check status of instance and detail by command: 
     more terraform.tfvars |grep 'compute ='
     gcloud compute instances list --filter="name=('<compute name>')"
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
+    NAME                     ZONE               MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+    lab-computer-student-23  asia-southeast1-a  f1-micro                   10.148.0.2   35.240.255.33  RUNNING
 
-10. Test access to new machine by ssh connection to <public ip>
+9. Test access to new machine by ssh connection to <public ip>
 
     ---------------------------------------------------------------------------
     Example MAC or WSL2:
     ---------------------------------------------------------------------------
-    ssh -i ~/terraformlab ubuntu@<public ip>
+    ssh -i ~/terraform_gcloud ubuntu@<public ip>
     ---------------------------------------------------------------------------
     ---------------------------------------------------------------------------
     Example Windows:
     ---------------------------------------------------------------------------
     putty to <public ip>
     ---------------------------------------------------------------------------
-gcloud beta compute --project "polar-decorator-267303" ssh --zone "asia-southeast1-a" "lab-computer-student-13"
+  
+10. (Remote Shell) Test docker command: sudo docker run hello-world && exit
 
-
-terraform destroy -auto-approve
-
-========================================  Test Deploy Native VM on Google Cloud  ============================================
-========================================  SignUp with Terraform Cloud  ===============================================================
-1. Access url: https://app.terraform.io/signup/account
-2. Input username, email, password for register
-3. Check and Confirm Email
-4. Access url: https://app.terraform.io/session and input username/password
-5. 
-========================================  Module Operate  ===============================================================
-1. Start workshop "module variable" by command:
-    cd ~/terraform_202003/Workshop_2.2_Module/01_Module/
-    sed -i -e 's/X/<your lab id>/g' ~/terraform_202003/Workshop_2.2_Module/01_Module/terraform.tfvars
-    more 00_provider.tf
-    more 01_resource_group.tf
-    more 02_network_module.tf
-    more 03_compute_module.tf
-    more terraformlab.pub
-    more variables.tf
-    more terraform.tfvars
-
-2. Download and Verify module's resource by command:
-    terraform init
-    ls -R .terraform/
-
-3. Login az cli for service priciple by command:
-    3.1 Input command: "az login"
-    ---------------------------------------------------------------------------
-    Example Output:
-    ---------------------------------------------------------------------------
-    To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code HUAF6ANNY to authenticate.
-    ---------------------------------------------------------------------------
-
-    3.2 Open browser for url: "https://microsoft.com/devicelogin" and input code
-
-    3.3 Sign In with user below:
-    Email: Training_Terraform_Student@eva10409hotmail.onmicrosoft.com
-    Username: Training_Terraform_Student
-    Password: Tr@1n1nG2020
-
-    3.4 You will get information from login as example below:
-    ---------------------------------------------------------------------------
-    Example Output:
-    ---------------------------------------------------------------------------
-[
-  {
-    "cloudName": "AzureCloud",
-    "id": "017499d3-a685-4954-b727-273a4a7f939f",
-    "isDefault": true,
-    "name": "Azure subscription 1",
-    "state": "Enabled",
-    "tenantId": "94740460-e015-46f0-b75b-1948465bf6a1",
-    "user": {
-      "name": "Training_Terraform_Student@eva10409hotmail.onmicrosoft.com",
-      "type": "user"
-    }
-  }
-]
-
-4. Start process of terraform operation:
-    terraform fmt -check
-    terraform validate
-    terraform apply -auto-approve -parallelism=5        (Wait 5 Min)
-
-5. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
----------------------------------------------------------------------------
-    Example:
-    Outputs:
-linux_vm_id = [
-  "/subscriptions/017499d3-a685-4954-b727-273a4a7f939f/resourceGroups/labresourcegroup-student-3/providers/Microsoft.Compute/virtualMachines/labserver-student-30",
-]
-linux_vm_public_name = [
-  "labserver202003-thailand-student-8f34c833ab88.southeastasia.cloudapp.azure.com",
-]
----------------------------------------------------------------------------
-
-6. Check status of EC2 and detail by command: 
-    more terraform.tfvars |grep rscgrp_name               ==> Record: rscgrp_name
-    az vm list -g <rscgrp_name> -d --output table
-    ---------------------------------------------------------------------------
-    Example Output:
-    ---------------------------------------------------------------------------
-
-Name                  ResourceGroup               PowerState    PublicIps       Fqdns                                                                           Location       Zones
---------------------  --------------------------  ------------  --------------  ------------------------------------------------------------------------------  -------------  -------
-labserver-student-30  labresourcegroup-student-3  VM running    207.46.228.144  labserver202003-thailand-student-8f34c833ab88.southeastasia.cloudapp.azure.com  southeastasia
-    ---------------------------------------------------------------------------
-
-6. (Local Machine) (Wait 3 -5 min) Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
-
-7. (Local Machine) Test run command: sudo docker run hello-world
-
-8. Destroy EC2/EBS from this script by command:(Wait 3 -5 min) 
+11. Destroy EC2/EBS from this script by command:(Wait 3 -5 min) 
     terraform destroy -auto-approve
 
-9. Check status of EC2 and detail by command: 
-    more terraform.tfvars |grep rscgrp_name               ==> Record: rscgrp_name
-    az vm list -g <resource group name> -d --output table
+12. Check status of EC2 and detail by command: 
+    more terraform.tfvars |grep 'compute ='
+    gcloud compute instances list --filter="name=('<compute name>')"
+
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
-    Resource group 'labresourcegroup-student-11' could not be found.
+    Listed 0 items.
+
+========================================  Test Deploy Native VM on Google Cloud  ============================================
+========================================  SignUp with Terraform Cloud (Team Workshop)  ======================================
+1. Create Git with name by "Control Sheet" on your repository (1 Group, 1 Repository)
+2. Access url: https://app.terraform.io/signup/account and Register
+3. Access url: https://app.terraform.io/session and create organization
+4. (Terraform Cloud)Create workspace with VCS (Version Control Provider)
+5. (Terraform Cloud)Configure variable for operate (Reference from Control Sheet)
+    5.1 project_id = "<Control Sheet>"
+    5.2 region = "<Control Sheet>"
+    5.3 zone = "<Control Sheet>"
+    5.4 gcompute_network_name = "<Control Sheet>"
+    5.5 gcompute_createsubnet = <Control Sheet>     (HCL)
+    5.6 compute_name = "<Control Sheet> "
+    5.7 compute = "<Control Sheet> "                                ===> Record
+    5.8 compute_type = "<Control Sheet> "
+    5.9 image = "<Control Sheet> "
+    5.10 disk_size = <Control Sheet>    (HCL)
+    5.11 user_data = <Control Sheet> 
+6. Copy file "GCloud-Credential.json" and "terraform_gcloud.pub" to folder of github's repository
+7. Start commit git repository with comment "Git Action Credential"
+8. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
+9. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Credential)
+10. (Terraform Cloud)Monitor progress on terraform cloud
+11. Check status of instance and detail by command: 
+    gcloud compute instances list --filter="name=('<compute name>')"        <== value from variable compute
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+    NAME                     ZONE               MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+    lab-computer-student-23  asia-southeast1-a  f1-micro                   10.148.0.2   35.240.255.33  RUNNING
+
+12. Test access to new machine by ssh connection to <public ip>
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i ~/terraform_gcloud ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+  
+13. (Remote Shell) Test docker command: sudo docker run hello-world && exit
+
+14. (Terraform Cloud)Go to tab variable and set environment variable "CONFIRM_DESTROY" = 1
+
+15. (Terraform Cloud)Go to tab destruction & destroy
+
+16. (Terraform Cloud)Select "Queue destroy plan"
+
+17. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
+18. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Destroy)
+19. (Terraform Cloud)Monitor progress on terraform cloud
+
+20. Check status of EC2 and detail by command: 
+    gcloud compute instances list --filter="name=('<compute name>')"
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+    Listed 0 items.
+
+21. (Terraform Cloud)Go to tab destruction & destroy and Select "Delete from Terraform Cloud"
+22. (Terraform Cloud)Input workspace name
+23. Delete repository from github
+
+========================================  SignUp with Terraform Cloud (Team Workshop)  ======================================

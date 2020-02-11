@@ -50,6 +50,11 @@ Link for download:
     scp -i terraformlab <your path of credential folder>/terraform_gcloud ubuntu@<public ip>:/home/ubuntu
     scp -i terraformlab <your path of credential folder>/terraformlab ubuntu@<public ip>:/home/ubuntu
 
-13. Check mode 400 for all credential
+13. Check mode 400 for all credential by command:
     chmod 400 /home/ubuntu/terraform_gcloud
     chmod 400 /home/ubuntu/terraformlab
+
+14. Setup locale on bash_profile by command:
+    echo "LC_ALL=en_US.UTF-8" > ~/.bash_profile
+
+15. Relogon to remote server again.

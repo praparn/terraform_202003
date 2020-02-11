@@ -2,7 +2,6 @@
 today=`date '+%Y_%m_%d__%H_%M_%S'`;
 filename="./log/Result_$today.log"
 clear
-# Input access_key/secret_key (can skip if run second time)
 echo "Please kindly export your access_key/secret_key to environment variable before use this script"
 echo "======================================================================================================="
 echo "export TF_VAR_access_key=<your access key>"
@@ -25,10 +24,26 @@ fi
 else
 exit
 fi
+if [ -z "$TF_VAR_access_key" ]; then
+echo "======================================================================================================="
+echo "Detect: Empty Access Key or Secret Key !!!. Program will exit"
+echo "======================================================================================================="
+exit
+fi
+if [ -z "$TF_VAR_secret_key" ]; then
+echo "======================================================================================================="
+echo "Detect: Empty Access Key or Secret Key !!!. Program will exit"
+echo "======================================================================================================="
+exit
+fi
 echo "====================================Finished to Set Credential=========================================="
 echo "===================================Import Global Configuration=========================================="
 cp ../../global_variable.auto.tfvars ./global_variable.auto.tfvars
 echo "=================================Start Execution Process Now !!!========================================"
 ./99_automate.sh >> $filename
-
+cp ../../global_variable.auto.tfvars ./global_variable.auto.tfvars
+echo "=================================Generate Output !!!===================================================="
+terraform output > inventory_lab.txt
+terraform output
+echo "=================================Generate Output !!!===================================================="
 echo "===============================Finished Execution Process Now !!!======================================="
