@@ -47,6 +47,7 @@ Link for download:
 
 12. (Local) Transfer (SCB/WINSCP) credential file to remote machine
     scp -i terraformlab <your path of credential folder>/terraform_gcloud.pub ubuntu@<public ip>:/home/ubuntu
+    scp -i terraformlab <your path of credential folder>/GCloud-Lab_Credential.json ubuntu@<public ip>:/home/ubuntu
     scp -i terraformlab <your path of credential folder>/terraform_gcloud ubuntu@<public ip>:/home/ubuntu
     scp -i terraformlab <your path of credential folder>/terraformlab ubuntu@<public ip>:/home/ubuntu
 

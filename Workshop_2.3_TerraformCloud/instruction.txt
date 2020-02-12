@@ -2,7 +2,7 @@ This workshop for operate with module on gcloud via terraform cloud
 ========================================  Initial Gcloud CLI  ===============================================================
 1. Configure project name by command: "gcloud config set project <project id>"
 2. Authentication to remote server and start gcloud by command:
-    gcloud auth activate-service-account --key-file=/home/ubuntu/GCloud-Credential.json
+    gcloud auth activate-service-account --key-file=/home/ubuntu/GCloud-Lab_Credential.json
 
 3. Test gcloud cli command:
     gcloud auth list
@@ -12,7 +12,7 @@ This workshop for operate with module on gcloud via terraform cloud
     gcloud projects list
 
 4. Export Credential for default authentication by command:
-    export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Credential.json"
+    export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/GCloud-Lab_Credential.json"
 ========================================  Initial Gcloud CLI  ===============================================================
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
 5. Start workshop "native workspace" by command:
@@ -74,37 +74,34 @@ google_compute_instance_labserver_nat_ip = 35.240.255.33
     ---------------------------------------------------------------------------
     Listed 0 items.
 
-13. Clean Up by command:
-    rm -rf ~/*
-
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
 ========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
-1. Create Git with name by "Control Sheet" on your repository (1 Group, 1 Repository)
+1. Create Git with name "TerraformCloudeSpace" (Private Repository) and Add folder to git
 2. Access url: https://app.terraform.io/signup/account and Register
-3. Access url: https://app.terraform.io/session and create organization
-4. (Terraform Cloud)Create workspace with VCS (Version Control Provider)
+3. Access url: https://app.terraform.io/session and create organization name "TerraformCloudeSpace-Organzation"
+4. (Terraform Cloud)Create workspace name "TerraformCloudeSpace-Workspace"with VCS (Version Control Provider)
 5. (Terraform Cloud)Configure variable for operate
     ---------------------------------------------------------------------------
 project_id = "polar-decorator-267303"
 region = "asia-southeast1"
 zone = "asia-southeast1-a"
 gcompute_network_name = "lab-vpc-student-master"
-gcompute_createsubnet = true
+gcompute_createsubnet = true                            ==> HCL
 compute_name = "lab-computer-student-master.terraform.local"
 compute = "lab-computer-student-master"
 compute_type = "f1-micro"
 image = "ubuntu-1804-lts"
-disk_size = 10
+disk_size = 10                                          ==> HCL
 user_data = curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > /tmp/setup.sh && chmod +x /tmp/setup.sh && /tmp/setup.sh
     ---------------------------------------------------------------------------
 
-6. Copy file "GCloud-Credential.json" and "terraform_gcloud.pub" to folder of github's repository
+6. Copy file "GCloud-Lab_Credential.json" and "terraform_gcloud.pub" to folder of github's repository
 7. Start commit git repository with comment "Git Action Credential"
-8. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
+8. (Terraform Cloud)Switch to Run Tab, Operate "Queue Plan" and Monitor result on terraform cloud (Tab: Run)
 9. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Credential)
 10. (Terraform Cloud)Monitor progress on terraform cloud
 11. Check status of instance and detail by command: 
-    gcloud compute instances list --filter="name=('<compute name>')"        <== value from variable compute
+    gcloud compute instances list --filter="name=('lab-computer-student-master')"        <== value from variable compute
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -136,7 +133,7 @@ user_data = curl https://raw.githubusercontent.com/praparn/sourcesetup/master/st
 19. (Terraform Cloud)Monitor progress on terraform cloud
 
 20. Check status of EC2 and detail by command: 
-    gcloud compute instances list --filter="name=('<compute name>')"
+    gcloud compute instances list --filter="name=('lab-computer-student-master')"
     ---------------------------------------------------------------------------
     Example Output:
     ---------------------------------------------------------------------------
@@ -145,5 +142,7 @@ user_data = curl https://raw.githubusercontent.com/praparn/sourcesetup/master/st
 21. (Terraform Cloud)Go to tab destruction & destroy and Select "Delete from Terraform Cloud"
 22. (Terraform Cloud)Input workspace name
 23. Delete repository from github
-
+24. Clean Up Remote Machine by command:
+    cd ~/
+    rm -rf ~/*
 ========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
