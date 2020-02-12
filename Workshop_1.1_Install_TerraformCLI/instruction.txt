@@ -2,6 +2,7 @@ Link for download:
 1. Check LABSheet_Terraform.xlsx for check information about your machine and your "terraform" (For MAC OS X) or "terraform.ppk" (For Windows)
 2. Check Document for connect to your AWS
 3. Upgrade aws version by command:
+    echo "LC_ALL=en_US.UTF-8" > ~/.bash_profile
     export LC_ALL=C
     pip3 install awscli --upgrade --user
 
@@ -45,16 +46,10 @@ Link for download:
     git clone https://github.com/praparn/terraform_202003.git
 
 12. (Local) Transfer (SCB/WINSCP) credential file to remote machine
-    scp -i terraformlab <your path of credential folder>/*.json ubuntu@<public ip>:/home/ubuntu
-    scp -i terraformlab <your path of credential folder>/*.pub ubuntu@<public ip>:/home/ubuntu
+    scp -i terraformlab <your path of credential folder>/terraform_gcloud.pub ubuntu@<public ip>:/home/ubuntu
     scp -i terraformlab <your path of credential folder>/terraform_gcloud ubuntu@<public ip>:/home/ubuntu
     scp -i terraformlab <your path of credential folder>/terraformlab ubuntu@<public ip>:/home/ubuntu
 
 13. Check mode 400 for all credential by command:
     chmod 400 /home/ubuntu/terraform_gcloud
     chmod 400 /home/ubuntu/terraformlab
-
-14. Setup locale on bash_profile by command:
-    echo "LC_ALL=en_US.UTF-8" > ~/.bash_profile
-
-15. Relogon to remote server again.
