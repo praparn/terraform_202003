@@ -48,17 +48,7 @@ google_compute_instance_labserver_nat_ip = 35.240.255.33
     lab-computer-student-23  asia-southeast1-a  f1-micro                   10.148.0.2   35.240.255.33  RUNNING
 
 9. Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i ~/terraform_gcloud ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+    ssh -i ~/terraformlab ubuntu@<public ip>
   
 10. (Remote Shell) Test docker command: sudo docker run hello-world && exit
 
@@ -109,16 +99,7 @@ user_data = curl https://raw.githubusercontent.com/praparn/sourcesetup/master/st
     lab-computer-student-23  asia-southeast1-a  f1-micro                   10.148.0.2   35.240.255.33  RUNNING
 
 12. Test access to new machine by ssh connection to <public ip>
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i ~/terraform_gcloud ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+    ssh -i ~/terraformlab ubuntu@<public ip>
   
 13. (Remote Shell) Test docker command: sudo docker run hello-world && exit
 

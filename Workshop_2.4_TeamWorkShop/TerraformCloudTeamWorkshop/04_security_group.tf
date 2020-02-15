@@ -1,5 +1,5 @@
 resource "aws_security_group" "secgroup_server" {
-  name        = "securitygroup-server1-student-X"
+  name        = var.secgroup
   description = "security group for web server (nginx)"
   vpc_id      = var.vpc_id
   #Incoming Rule
@@ -44,7 +44,7 @@ resource "aws_security_group" "secgroup_server" {
     Region      = "ap-southeast-1"
     AZ          = "none"
     Categories  = "compute"
-    Name        = "securitygroup-server1-student-X"
+    Name        = var.tag_secgroup
     Zone        = "public"
     Module      = "secgroup"
     Billing     = "terraform-workshop"

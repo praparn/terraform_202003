@@ -1,6 +1,13 @@
 This workshop for operate team workshop with terraform cloud
 ========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
+0. Copy folder "TerraformCloudTeamWorkshop" under "Workshop_2.4_TeamWorkShop" to new place (Outside workshop folder)
 1. Create Git with name "IaC-TerraformThailand-User-<Group ID>" (Private Repository) and Add folder to git
+    git init
+    git add -A
+    git commit -m "First Commit"
+    git remote add <reference on github>
+    git push -u origin master
+
 2. Access url: https://app.terraform.io/signup/account and Register
 3. Access url: https://app.terraform.io/session and create organization name "IaC-TerraformThailand-Organize-<Group ID>"
 4. (Terraform Cloud)Create workspace name "IaC-TerraformThailand-<Group ID>" with VCS (Version Control Provider)
@@ -36,7 +43,7 @@ tag_billing="terraform-workshop"
 7. (Terraform Cloud)Switch to Run Tab, Operate "Queue Plan" 
 8. (Terraform Cloud)Monitor result for terraform plan and review item to create
 9. (Terraform Cloud)Click "Confirm & Apply" (Add Comment: Git Action Credential)
-10. (Terraform Cloud)Monitor progress on terraform cloud
+10. (Terraform Cloud)Monitor progress on terraform cloud until finished
 ---------------------------------------------------------------------------
     Example:
     Outputs:
@@ -45,62 +52,56 @@ aws_route53_fqdn = {
   "i-0f0419f97be843d2d" = "i-0f0419f97be843d2d.terraform.local"
 }
 ---------------------------------------------------------------------------
+11. Verify ec2 status by command:
+    aws ec2 describe-instances --instance-ids <instance id-server1>
+    aws ec2 describe-instances --instance-ids <instance id-server2>
 
-11. Test access to new machine by ssh connection to <public ip server 1/server 2>
+12. Test access to new machine by ssh connection to <public ip server 1/server 2> (Wait 4 -5 Min)
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost && exit
+             for Server 2: docker version && docker run hello-world && exit
 
-    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost
-             for Server 2: docker version && docker run hello-world
+13. Edit file "terraform.auto.tfvars",change all instance_type to "t2a.nano" and commit change to git with comment "Edit instance type"
+    git init
+    git add -A
+    git commit -m "Edit instance type"
+    git push
 
+14. (Terraform Cloud)Go to tab "run", monitor result for terraform plan and review item to create
+15. (Terraform Cloud)Click "Confirm & Apply" (Add Comment: Edit instance type)
+16. (Terraform Cloud)Monitor progress on terraform cloud until finished
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_route53_fqdn = {
+  "i-0da8541014abb05c2" = "i-0da8541014abb05c2.terraform.local"
+  "i-0f0419f97be843d2d" = "i-0f0419f97be843d2d.terraform.local"
+}
+---------------------------------------------------------------------------
+17. Verify ec2 status by command:
+    aws ec2 describe-instances --instance-ids <instance id-server1>
+    aws ec2 describe-instances --instance-ids <instance id-server2>
 
+18. Test access to new machine by ssh connection to <public ip server 1/server 2> (Wait 4 -5 Min)
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
+    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost && exit
+             for Server 2: docker version && docker run hello-world && exit
 
-
-12. Test access to new machine by ssh connection to <public ip>
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i ~/terraform_gcloud ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
-  
-13. (Remote Shell) Test docker command: sudo docker run hello-world && exit
-
-14. (Terraform Cloud)Go to tab variable and set environment variable "CONFIRM_DESTROY" = 1
-
-15. (Terraform Cloud)Go to tab destruction & destroy
-
-16. (Terraform Cloud)Select "Queue destroy plan"
-
-17. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
-18. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Destroy)
-19. (Terraform Cloud)Monitor progress on terraform cloud
-
-20. Check status of EC2 and detail by command: 
-    gcloud compute instances list --filter="name=('lab-computer-student-master')"
-    ---------------------------------------------------------------------------
-    Example Output:
-    ---------------------------------------------------------------------------
-    Listed 0 items.
-
-21. (Terraform Cloud)Go to tab destruction & destroy and Select "Delete from Terraform Cloud"
-22. (Terraform Cloud)Input workspace name
-23. Delete repository from github
-24. Clean Up Remote Machine by command:
+19. (Terraform Cloud)Go to tab variable and add "CONFIRM_DESTROY" for allow destroy
+    CONFIRM_DESTROY = 1
+20. (Terraform Cloud)Go to tab destruction & destroy and Select "Queue destroy plan"
+21. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
+22. (Terraform Cloud)Choose "Confirm & Apply" (Add Comment: Git Action Destroy)
+23. (Terraform Cloud)Monitor progress on terraform cloud until finished
+24. Verify ec2 status by command:
+    aws ec2 describe-instances --instance-ids <instance id-server1>
+    aws ec2 describe-instances --instance-ids <instance id-server2>
+25. (Terraform Cloud)Go to tab destruction & destroy and Select "Delete from Terraform Cloud"
+26. (Terraform Cloud)Input workspace name
+27. Delete repository from github
+28. Clean Up Remote Machine by command:
     cd ~/
     rm -rf ~/*
-========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
+    sudo shutdown

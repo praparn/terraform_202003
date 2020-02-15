@@ -25,8 +25,7 @@ This workshop for operate with module on azure
 
     3.2 Open browser for url: "https://microsoft.com/devicelogin" and input code
 
-    3.3 Sign In with user on file: Azure-Credential.txt
-
+    3.3 Sign In with user as reference on control sheet
 
     3.4 You will get information from login as example below:
     ---------------------------------------------------------------------------
@@ -76,20 +75,10 @@ Name                  ResourceGroup               PowerState    PublicIps       
 labserver-student-30  labresourcegroup-student-3  VM running    207.46.228.144  labserver202003-thailand-student-8f34c833ab88.southeastasia.cloudapp.azure.com  southeastasia
     ---------------------------------------------------------------------------
 
-6. (Local Machine) (Wait 3 -5 min) Test access to new machine by ssh connection to <public ip>
+6. (Wait 3 -5 min) Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
-
-7. (Local Machine) Test run command: sudo docker run hello-world
+7. Test run command: sudo docker run hello-world
 
 8. Destroy EC2/EBS from this script by command:(Wait 3 -5 min) 
     terraform destroy -auto-approve

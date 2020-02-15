@@ -30,18 +30,8 @@ aws_instance_lab_public_ip = 13.251.110.185
 
 4. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
 
-5. (Local Machine) Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+5. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
 6. Destroy EC2/EBS from this script by command: 
     terraform destroy -auto-approve \
@@ -91,18 +81,8 @@ aws_instance_lab_public_ip = 13.251.42.135
 
 13. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
 
-14. (Local Machine) Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+14. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
 15. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
 
@@ -145,18 +125,8 @@ aws_instance_lab_public_ip = 18.138.224.169
 
 22. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
 
-23. (Local Machine) Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+23. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
 24. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
 
@@ -227,22 +197,12 @@ aws_route53_fqdn = {
 }
 ---------------------------------------------------------------------------
 
-34. (Local Machine) Test access to new machine by ssh connection to <public ip server 1/server 2>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+34. Test access to new machine by ssh connection to <public ip server 1/server 2>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
     *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost
              for Server 2: docker version && docker run hello-world
-35. (Local Machine) Query dns on remote machine by command:
+35. Query dns on remote machine by command:
     nslookup i-<Server 1's ID>.terraform.local
     nslookup i-<Server 1's ID>.terraform.local
 

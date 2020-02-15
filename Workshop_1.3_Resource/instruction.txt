@@ -38,19 +38,8 @@ Default output format [None]: table
 
 6. Check status of EC2 and detail via aws cli by command: aws ec2 describe-instances --instance-ids <input instance id>
 
-7. (Local Machine) Open new session for test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
-    *Remark: After finished please exit from session
+7. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
 8. Change instance type of ec2 from t3a.nano to t2.nano by command:
     sed -i -e 's/t3a.nano/t2.nano/g' ~/terraform_202003/Workshop_1.3_Resource/01_basic_resource/01_basic_resource.tf
@@ -72,18 +61,8 @@ aws_instance_lab_public_ip = 52.77.210.220
 
 11. Check status of EC2 and detail via aws cli by command: aws ec2 describe-instances --instance-ids <input instance id>
 
-12. (Local Machine) Test access to new machine by ssh connection to <public ip>
-
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+12. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
 13. Destroy EC2 from this script by command: terraform Destroy
 *Remark1: Terraform will show list of delete object and wait for approve to operate: confirm by input "yes"
@@ -125,24 +104,14 @@ aws_instance_lab_public_ip = 13.251.129.151
 
 19. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
 
-20. (Local Machine) Test access to new machine by ssh connection to <public ip>
+20. Test access to new machine by ssh connection to <public ip>
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+21. Check root storage (/) and additional storage by command: sblk
 
-21. (Local Machine) Check root storage (/) and additional storage by command: sblk
+22. Check additional storage by command: sudo file -s /dev/nvme1n1
 
-22. (Local Machine) Check additional storage by command: sudo file -s /dev/nvme1n1
-
-23. (Local Machine) Format additional storage and mount to system by command:
+23. Format additional storage and mount to system by command:
     sudo mkfs -t xfs /dev/nvme1n1
     sudo mkdir /additionalstorage
     sudo mount /dev/nvme1n1 /additionalstorage
@@ -206,37 +175,19 @@ aws_instance_lab_public_ip = 13.251.129.151
 
 34. Check status of S3 Bucket and detail by command: aws s3api list-buckets --query "Buckets[].Name" | grep <s3 bucket id>
 
-35. (Local Machine) Test access to new machine by ssh connection to <public ip> of server 1 (nginx server)
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+35. Test access to new machine by ssh connection to <public ip> of server 1 (nginx server)
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
-34. (Local Machine) Check by command: ps -ef | grep nginx
+34. Check by command: ps -ef | grep nginx
 
-35. (Local Machine) Test curl for get first page of nginx by command: curl http://localhost
+35. Test curl for get first page of nginx by command: curl http://localhost
 
-36. (Local Machine) Test access web site by url: http://<public ip of server1>
+36. Test access web site by url: http://<public ip of server1>
 
-37. (Local Machine) Test access to new machine by ssh connection to <public ip> of server 2 (docker server)
-    ---------------------------------------------------------------------------
-    Example MAC or WSL2:
-    ---------------------------------------------------------------------------
-    ssh -i terraform ubuntu@<public ip>
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    Example Windows:
-    ---------------------------------------------------------------------------
-    putty to <public ip>
-    ---------------------------------------------------------------------------
+37. Test access to new machine by ssh connection to <public ip> of server 2 (docker server)
+    ssh -i ~/terraformlab ubuntu@<public ip>
 
-38. (Local Machine) Test run some docker container by command: docker version && docker run hello-world
+38. Test run some docker container by command: docker version && docker run hello-world
 
 39. Test utilize and access s3 bucket by command:
     curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > ~/script_docker.sh

@@ -6,11 +6,6 @@ variable "vpc_id" {
   description = "VPC ID"
 }
 
-variable "zone_id" {
-  type = string
-  description = "DNS Zone ID"
-}
-
 variable "region" {
   type = string
   description = "Defined region for operate"
