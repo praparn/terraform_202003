@@ -1,0 +1,106 @@
+This workshop for operate team workshop with terraform cloud
+========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
+1. Create Git with name "IaC-TerraformThailand-User-<Group ID>" (Private Repository) and Add folder to git
+2. Access url: https://app.terraform.io/signup/account and Register
+3. Access url: https://app.terraform.io/session and create organization name "IaC-TerraformThailand-Organize-<Group ID>"
+4. (Terraform Cloud)Create workspace name "IaC-TerraformThailand-<Group ID>" with VCS (Version Control Provider)
+5. (Terraform Cloud)Configure variable for operate (Reference from Control Sheet)
+    *Remark: tag_name need HCL's checkbox
+    ---------------------------------------------------------------------------
+vpc_id="vpc-4483e921"
+region = "ap-southeast-1"
+availability_zone="ap-southeast-1a"
+server_type = "nginx"
+keypair = "keypair"
+instancecount=2
+rootblockdevice_volume_type = "gp2"
+rootblockdevice_volume_size = 10
+rootblockdevice_delete_on_termination = true
+tag_environment="rd"
+tag_region="ap-southeast-1"
+tag_az="ap-southeast-1a"
+tag_category="compute"
+tag_name={
+    "0"    = "labresource-server1-student-<Group ID>"
+    "1"    = "labresource-server2-student-<Group ID>"
+}
+tag_zone="public"
+tag_module="ec2"
+tag_billing="terraform-workshop"
+    ---------------------------------------------------------------------------
+
+6. Set environment variable for operate by detail below:(Reference from Control Sheet)
+    AWS_ACCESS_KEY_ID="<access key>"
+    AWS_SECRET_ACCESS_KEY="<secret key>"
+
+7. (Terraform Cloud)Switch to Run Tab, Operate "Queue Plan" 
+8. (Terraform Cloud)Monitor result for terraform plan and review item to create
+9. (Terraform Cloud)Click "Confirm & Apply" (Add Comment: Git Action Credential)
+10. (Terraform Cloud)Monitor progress on terraform cloud
+---------------------------------------------------------------------------
+    Example:
+    Outputs:
+aws_route53_fqdn = {
+  "i-0da8541014abb05c2" = "i-0da8541014abb05c2.terraform.local"
+  "i-0f0419f97be843d2d" = "i-0f0419f97be843d2d.terraform.local"
+}
+---------------------------------------------------------------------------
+
+11. Test access to new machine by ssh connection to <public ip server 1/server 2>
+
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i terraform ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+
+    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost
+             for Server 2: docker version && docker run hello-world
+
+
+
+
+
+12. Test access to new machine by ssh connection to <public ip>
+    ---------------------------------------------------------------------------
+    Example MAC or WSL2:
+    ---------------------------------------------------------------------------
+    ssh -i ~/terraform_gcloud ubuntu@<public ip>
+    ---------------------------------------------------------------------------
+    ---------------------------------------------------------------------------
+    Example Windows:
+    ---------------------------------------------------------------------------
+    putty to <public ip>
+    ---------------------------------------------------------------------------
+  
+13. (Remote Shell) Test docker command: sudo docker run hello-world && exit
+
+14. (Terraform Cloud)Go to tab variable and set environment variable "CONFIRM_DESTROY" = 1
+
+15. (Terraform Cloud)Go to tab destruction & destroy
+
+16. (Terraform Cloud)Select "Queue destroy plan"
+
+17. (Terraform Cloud)Monitor result on terraform cloud (Tab: Run)
+18. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Destroy)
+19. (Terraform Cloud)Monitor progress on terraform cloud
+
+20. Check status of EC2 and detail by command: 
+    gcloud compute instances list --filter="name=('lab-computer-student-master')"
+    ---------------------------------------------------------------------------
+    Example Output:
+    ---------------------------------------------------------------------------
+    Listed 0 items.
+
+21. (Terraform Cloud)Go to tab destruction & destroy and Select "Delete from Terraform Cloud"
+22. (Terraform Cloud)Input workspace name
+23. Delete repository from github
+24. Clean Up Remote Machine by command:
+    cd ~/
+    rm -rf ~/*
+========================================  SignUp with Terraform Cloud (Demo by Teacher Workshop)  ===========================
