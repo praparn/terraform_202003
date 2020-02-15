@@ -85,7 +85,7 @@ disk_size = 10                                          ==> HCL
 user_data = curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > /tmp/setup.sh && chmod +x /tmp/setup.sh && /tmp/setup.sh
     ---------------------------------------------------------------------------
 
-6. Copy file "GCloud-Lab_Credential.json" and "terraform_gcloud.pub" to folder of github's repository
+6. Add file "GCloud-Lab_Credential.json" and "terraform_gcloud.pub" to folder of github's repository
 7. Start commit git repository with comment "Git Action Credential"
 8. (Terraform Cloud)Switch to Run Tab, Operate "Queue Plan" and Monitor result on terraform cloud (Tab: Run)
 9. (Terraform Cloud)Verify terraform plan and "Confirm & Apply" (Add Comment: Git Action Credential)
