@@ -17,7 +17,7 @@ This workshop for operate with module on gcloud via terraform cloud
 ========================================  Test Deploy Native VM on Google Cloud  ============================================
 5. Start workshop "native workspace" by command:
     cd ~/terraform_202003/Workshop_2.3_TerraformCloud/NativeWorkSpace
-    sed -i -e 's/x/<your lab id>/g' ~/terraform_202003/Workshop_2.3_TerraformCloud/NativeWorkSpace/terraform.tfvars
+    sed -i -e 's/X/<your lab id>/g' ~/terraform_202003/Workshop_2.3_TerraformCloud/NativeWorkSpace/terraform.tfvars
     more 00_provider.tf
     more 01_resource_vpc.tf
     more 02_resource_instance.tf

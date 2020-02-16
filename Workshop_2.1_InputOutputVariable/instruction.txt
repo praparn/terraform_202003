@@ -101,7 +101,7 @@ aws_instance_lab_public_ip = 13.251.42.135
     echo $TF_VAR_keypair
 ========================================  Environment Variable  ===============================================================
 ======================================== File Variable  =========================================================================
-19. Start workshop "ui variable" by command:
+19. Start workshop "file variable" by command:
     cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/03_file_variable
     more 03_file_resource.tf
     more terraform.tfvars
@@ -177,6 +177,7 @@ aws_instance_labserver_ip = {
 
 32. Create Route53 from variable by command:
     cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/02_route53
+    more ../global_variable.auto.tfvars
     more 00_provider.tf
     more 01_route53.tf
     more variables.tf
@@ -200,8 +201,9 @@ aws_route53_fqdn = {
 34. Test access to new machine by ssh connection to <public ip server 1/server 2>
     ssh -i ~/terraformlab ubuntu@<public ip>
 
-    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost
-             for Server 2: docker version && docker run hello-world
+    *Remark: for Server 1: ps -ef | grep nginx && curl http://localhost && exit
+             for Server 2: docker version && docker run hello-world && exit
+
 35. Query dns on remote machine by command:
     nslookup i-<Server 1's ID>.terraform.local
     nslookup i-<Server 1's ID>.terraform.local
@@ -211,5 +213,7 @@ aws_route53_fqdn = {
     terraform destroy -auto-approve -var-file=../global_variable.auto.tfvars ./
     cd ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance
     terraform destroy -auto-approve -var-file=../global_variable.auto.tfvars ./
+
+    Remark: Due to we have add variable "aws_instance_labserver_ip" on global_variable.auto.tfvars after create instance. So it will warnning about this. Please ignore
 
 ======================================== Share Variable  =========================================================================

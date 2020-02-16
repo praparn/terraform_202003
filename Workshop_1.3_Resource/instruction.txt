@@ -64,7 +64,7 @@ aws_instance_lab_public_ip = 52.77.210.220
 12. Test access to new machine by ssh connection to <public ip>
     ssh -i ~/terraformlab ubuntu@<public ip>
 
-13. Destroy EC2 from this script by command: terraform Destroy
+13. Destroy EC2 from this script by command: "terraform destroy"
 *Remark1: Terraform will show list of delete object and wait for approve to operate: confirm by input "yes"
 *Remark2: terraform destroy is pre-requiste for operate. If you skip this other lab will struct due to limit machine
 
@@ -107,7 +107,7 @@ aws_instance_lab_public_ip = 13.251.129.151
 20. Test access to new machine by ssh connection to <public ip>
     ssh -i ~/terraformlab ubuntu@<public ip>
 
-21. Check root storage (/) and additional storage by command: sblk
+21. Check root storage (/) and additional storage by command: lsblk
 
 22. Check additional storage by command: sudo file -s /dev/nvme1n1
 
@@ -187,7 +187,7 @@ aws_instance_lab_public_ip = 13.251.129.151
 37. Test access to new machine by ssh connection to <public ip> of server 2 (docker server)
     ssh -i ~/terraformlab ubuntu@<public ip>
 
-38. Test run some docker container by command: docker version && docker run hello-world
+38. Test run some docker container by command: docker version && docker run hello-world && exit
 
 39. Test utilize and access s3 bucket by command:
     curl https://raw.githubusercontent.com/praparn/sourcesetup/master/standard_docker_aws.sh > ~/script_docker.sh

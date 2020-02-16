@@ -51,6 +51,8 @@ This workshop for operate with module on azure
     terraform validate
     terraform apply -auto-approve -parallelism=5        (Wait 5 Min)
 
+    *Remark: Warning message for deprecated may be receive. Due to module is not update yet from owner
+
 5. Check output detail of virtual machine instance by command: terraform output  (* Record instance id, ip address etc)
 ---------------------------------------------------------------------------
     Example:

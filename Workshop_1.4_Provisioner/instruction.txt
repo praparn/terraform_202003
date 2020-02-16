@@ -1,8 +1,6 @@
-Link for download:
-1. SCP access key to your terraform server by command: scp -i terraformlab ./terraformlab ubuntu@<ip of terraform server:/home/ubuntu
+This workshop will demostrate about user provisioner for operate
 
-========================================  Implicit Dependency  ===============================================================
-2. Start workshop provider for "Implicit Dependency" by command:
+1. Start workshop provider for "Implicit Dependency" by command:
     chmod 400 ~/terraformlab
     cd ~/terraform_202003/Workshop_1.4_Provisioner
     more 00_provider.tf
@@ -13,13 +11,13 @@ Link for download:
     more 03_resource_disk.tf
     more terraform.tfvars
 
-3. Start process of terraform operation:
+2. Start process of terraform operation:
     terraform init
     terraform fmt -check
     terraform validate
     terraform apply -auto-approve -parallelism=5 -refresh=true ./
 
-4. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
+3. Check output detail of ami/ec2/volume instance by command: terraform output  (* Record instance id, ip address etc)
 ---------------------------------------------------------------------------
     Example:
     Outputs:
@@ -31,19 +29,19 @@ aws_instance_lab_public_dns = ec2-3-1-51-49.ap-southeast-1.compute.amazonaws.com
 aws_instance_lab_public_ip = 3.1.51.49
 ---------------------------------------------------------------------------
 
-5. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+4. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
 
-6. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
+5. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
 
-7. Test access to new machine by ssh connection to <public ip>
+6. Test access to new machine by ssh connection to <public ip>
    ssh -i ~/terraformlab ubuntu@<public ip>
 
-8. Check root storage (/) and additional storage by command: lsblk
+7. Check root storage (/) and additional storage by command: lsblk
 
-9. Check disk operate by command: df -kh
+8. Check disk operate by command: df -kh && exit
 
-10. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
+9. Destroy EC2/EBS from this script by command: terraform destroy -auto-approve 
 
-11. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
+10. Check status of EC2 and detail by command: aws ec2 describe-instances --instance-ids <instance id>
 
-12. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>
+11. Check status of attach disk to EC2 by command: aws ec2 describe-volumes --region ap-southeast-1 --filters Name=attachment.instance-id,Values=<instance id>

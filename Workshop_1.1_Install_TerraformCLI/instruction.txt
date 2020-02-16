@@ -36,6 +36,7 @@ Link for download:
 9. Operate HCL with date function by command:
     Ex1: formatdate ("YYYY-MM-DD HH-mm-ss AA", "2020-01-10T23:01:15Z")
     Ex2: formatdate ("YYYY-MM-DD HH-mm-ss AA", timeadd("2020-01-10T23:01:15Z", "12h"))
+    exit
 
 10. Clone repository for workshop by command: git clone https://github.com/praparn/terraform_202003.git
 *Remark: If you need to refresh all of repository. Please delete existing and git clone again by command:
@@ -43,14 +44,6 @@ Link for download:
     rm -rf ./terraform_202003
     git clone https://github.com/praparn/terraform_202003.git
 
-11. Exit from terraform by command: exit
-
-12. (Local) Transfer (SCB/WINSCP) credential file to remote machine
-    scp -i terraformlab <your path of credential folder>/terraform_gcloud.pub ubuntu@<public ip>:/home/ubuntu
-    scp -i terraformlab <your path of credential folder>/GCloud-Lab_Credential.json ubuntu@<public ip>:/home/ubuntu
-    scp -i terraformlab <your path of credential folder>/terraform_gcloud ubuntu@<public ip>:/home/ubuntu
-    scp -i terraformlab <your path of credential folder>/terraformlab ubuntu@<public ip>:/home/ubuntu
-
-13. Relogon and chmod 400 for all credential by command:
+11. Chmod 400 for all credential by command:
     chmod 400 /home/ubuntu/terraform_gcloud
     chmod 400 /home/ubuntu/terraformlab
