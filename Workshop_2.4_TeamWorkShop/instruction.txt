@@ -23,6 +23,7 @@ instancecount=2
 rootblockdevice_volume_type = "gp2"
 rootblockdevice_volume_size = 10
 rootblockdevice_delete_on_termination = true
+secgroup="securitygroup-server1-student-<Group ID>"
 tag_environment="rd"
 tag_region="ap-southeast-1"
 tag_az="ap-southeast-1a"
@@ -34,6 +35,7 @@ tag_name={
 tag_zone="public"
 tag_module="ec2"
 tag_billing="terraform-workshop"
+tag_secgroup="securitygroup-server1-student-<Group ID>"
     ---------------------------------------------------------------------------
 
 6. Set environment variable for operate by detail below:(Reference from Control Sheet)
@@ -63,7 +65,6 @@ aws_route53_fqdn = {
              for Server 2: docker version && docker run hello-world && exit
 
 13. Edit file "terraform.auto.tfvars",change all instance_type to "t2a.nano" and commit change to git with comment "Edit instance type"
-    git init
     git add -A
     git commit -m "Edit instance type"
     git push
@@ -104,4 +105,4 @@ aws_route53_fqdn = {
 28. Clean Up Remote Machine by command:
     cd ~/
     rm -rf ~/*
-    sudo shutdown
+    sudo shutdown now
