@@ -42,6 +42,11 @@ variable "keypair" {
   description = "Keypair for authentication"
 }
 
+variable "secgroup" {
+  type = string
+  description = "Sec Group"
+}
+
 variable "rootblockdevice_volume_type" {
   type = string
   description = "Define volume type of root stroage"
@@ -95,4 +100,9 @@ variable "tag_module" {
 variable "tag_billing" {
   type = string
   description = "Define billing project to operate"
+}
+
+variable "tag_secgroup" {
+  type = string
+  description = "Define tag secgroup"
 }

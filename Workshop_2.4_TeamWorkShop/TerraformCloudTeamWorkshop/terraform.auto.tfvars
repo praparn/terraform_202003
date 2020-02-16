@@ -1,7 +1,7 @@
 instance_type = {
-    "nginx" = "t3a.nano"
+    "nginx" = "t2.nano"
     "docker" = "t2.nano"
-    "other" = "t3a.nano"
+    "other" = "t2.nano"
 }
 
 user_data = {
