@@ -144,12 +144,11 @@ aws_instance_lab_public_ip = 18.138.224.169
     more 00_provider.tf
     more 01_data_vpc.tf
     more 02_data_ami.tf
-    more 03_local.tf
     more 04_security_group.tf
     more 05_resource_ec2.tf
     more variables.tf
-    sed -i -e 's/labresource-server1-student-X/labresource-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
-    sed -i -e 's/labresource-server2-student-X/labresource-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_2.1_InputOutputVariable/04_share_variable/01_ec2_instance/terraform.tfvars
     more terraform.tfvars
 
 28. Start process of terraform operation:

@@ -76,9 +76,9 @@ aws_instance_lab_public_ip = 52.77.210.220
     cd ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource
     more 00_provider.tf
     more 01_data_ami.tf
-    sed -i -e 's/labresource-student-X/labresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/02_resource_ec2.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/02_resource_ec2.tf
     more 02_resource_ec2.tf
-    sed -i -e 's/EBSlabresource-student-X/EBSlabresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/03_resource_disk.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/02_implicit_resource/03_resource_disk.tf
     more 03_resource_disk.tf
     more terraform.tfvars
 
@@ -131,13 +131,13 @@ aws_instance_lab_public_ip = 13.251.129.151
     more 00_provider.tf
     more 01_data_vpc.tf
     more 02_data_ami.tf
-    sed -i -e 's/securitygroup-server1-student-X/securitygroup-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
-    sed -i -e 's/securitygroup-server2-student-X/securitygroup-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/03_security_group.tf
     more 03_security_group.tf
     sed -i -e 's/labresource-server1-student-X/labresource-server1-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/04_resource_ec2.tf
     sed -i -e 's/labresource-server2-student-X/labresource-server2-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/04_resource_ec2.tf
     more 04_resource_ec2.tf
-    sed -i -e 's/labresource-bucket-student-X/labresource-bucket-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/05_resource_bucket.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.3_Resource/03_explicit_resource/05_resource_bucket.tf
     more 05_resource_bucket.tf
     more terraform.tfvars
 

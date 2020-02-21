@@ -5,9 +5,9 @@ This workshop will demostrate about user provisioner for operate
     cd ~/terraform_202003/Workshop_1.4_Provisioner
     more 00_provider.tf
     more 01_data_ami.tf
-    sed -i -e 's/labresource-student-X/labresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/02_resource_ec2.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/02_resource_ec2.tf
     more 02_resource_ec2.tf
-    sed -i -e 's/EBSlabresource-student-X/EBSlabresource-student-<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/03_resource_disk.tf
+    sed -i -e 's/X/<Input YourLab No>/g' ~/terraform_202003/Workshop_1.4_Provisioner/03_resource_disk.tf
     more 03_resource_disk.tf
     more terraform.tfvars
 
