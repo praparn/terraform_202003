@@ -1,6 +1,6 @@
 resource "aws_ebs_volume" "labebs" {
   availability_zone = "ap-southeast-1c"
-  size              = "20"
+  size              = "10"
   type              = "gp2"
 
   tags = {
